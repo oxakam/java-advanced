@@ -30,11 +30,7 @@ public class App {
 		
 		var sql = "create table if not exists user (id integer primary key, name text not null)";		
 		statm.execute(sql);			//create table	
-		
-		/* drop table if you run statement several times and it causes the error by inserting */
-//		sql = "drop table user";		
-//		statm.execute(sql);
-		
+
 		/* insert data into user table with statement values */
 		
 		sql = "insert into user (id, name) values (?, ?)";
@@ -48,7 +44,7 @@ public class App {
 			insertStatm.setInt(1, ids[i]);
 			insertStatm.setString(2, names[i]);
 			
-//			insertStatm.executeUpdate();
+//			insertStatm.executeUpdate();	//call this execute for first insert only
 		}		
 		conn.commit();	/** use commit to save data permanently without execute/executeUpdate statement 
 						/*  if you run a hole group of statements 
