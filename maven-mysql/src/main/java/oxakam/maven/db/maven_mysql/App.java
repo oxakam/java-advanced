@@ -27,11 +27,15 @@ public class App
 		
 		var userOpt = userDao.findById(4);
 		
-		if (userOpt.isPresent())
-			System.out.println("Retrieved: " + userOpt.get());
-		else
+		if (userOpt.isPresent()) {
+			User user = userOpt.get();
+			System.out.println("Retrieved: " + user);
+			user.setName("Snoopy");
+			userDao.update(user);
+		}
+		else {
 			System.out.println("No user found");
-		
+		}
 		userDao.delete(new User(3, null));
 			
         try {

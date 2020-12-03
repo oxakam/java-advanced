@@ -8,17 +8,12 @@ import java.util.Optional;
 public class UserDaoImpl implements UserDao {
 
 	@Override
-	public void save(User u) {
-		
+	public void save(User u) {		
 		var conn = Database.dbInstance().getConnection();
-
 		try {
-			var stmt = conn.prepareStatement("insert into user (name) values (?)");
-			
-			stmt.setString(1, u.getName());		//setString for (?)
-			
-			stmt.executeUpdate();
-			
+			var stmt = conn.prepareStatement("insert into user (name) values (?)");			
+			stmt.setString(1, u.getName());		//setString for (?)			
+			stmt.executeUpdate();			
 			stmt.close();
 			
 		} catch (SQLException e) {
@@ -27,13 +22,22 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void update(User t) {
-		
+	public void update(User u) {
+		var conn = Database.dbInstance().getConnection();
+		try {
+			var stmt = conn.prepareStatement("update user set name=? where id=?");
+			stmt.setString(1, u.getName());
+			stmt.setInt(2, u.getId());
+			stmt.executeUpdate();
+//			stmt.close();
+			
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
 	}
 
 	@Override
-	public void delete(User u) {
-		
+	public void delete(User u) {		
 		var conn = Database.dbInstance().getConnection();		
 		try {
 			var stmt = conn.prepareStatement("delete from user where id=?");
@@ -51,8 +55,7 @@ public class UserDaoImpl implements UserDao {
 		
 		var conn = Database.dbInstance().getConnection();
 		try {
-			var stmt = conn.prepareStatement("select name from user where id=?");
-	
+			var stmt = conn.prepareStatement("select name from user where id=?");	
 			stmt.setInt(1, id);		
 			var res = stmt.executeQuery();
 			
@@ -78,7 +81,6 @@ public class UserDaoImpl implements UserDao {
 		var conn = Database.dbInstance().getConnection();
 		try {
 			var stmt = conn.createStatement();
-	
 			var res = stmt.executeQuery("select id, name from user");
 			
 			while (res.next()) {
