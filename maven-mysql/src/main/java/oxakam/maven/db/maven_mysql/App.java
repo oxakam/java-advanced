@@ -25,8 +25,16 @@ public class App
 		var allUsers = userDao.getAll();
 		allUsers.forEach(System.out::println);
 		
+		var userOpt = userDao.findById(4);
+		
+		if (userOpt.isPresent())
+			System.out.println("Retrieved: " + userOpt.get());
+		else
+			System.out.println("No user found");	
+			
         try {
 			db.disconnect();
+			
 		} catch (SQLException e) {
 			System.out.println("Cannot close database connection");		
 		}
