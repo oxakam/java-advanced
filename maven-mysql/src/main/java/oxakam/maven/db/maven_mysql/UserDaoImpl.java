@@ -1,0 +1,70 @@
+package oxakam.maven.db.maven_mysql;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class UserDaoImpl implements UserDao {
+
+	@Override
+	public void save(User u) {
+		
+		var conn = Database.dbInstance().getConnection();
+
+		try {
+			var stmt = conn.prepareStatement("insert into user (name) values (?)");
+			
+			stmt.setString(1, u.getName());		//setString for (?)
+			
+			stmt.executeUpdate();
+			
+			stmt.close();
+			
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public void update(User t) {
+		
+	}
+
+	@Override
+	public void delete(User t) {
+		
+	}
+
+	@Override
+	public Optional<User> findById(int id) {
+		
+		return null;
+	}
+
+	@Override
+	public List<User> getAll() 
+	{
+		List<User> users = new ArrayList<>();
+		
+		var conn = Database.dbInstance().getConnection();
+		try {
+			var stmt = conn.createStatement();
+	
+			var res = stmt.executeQuery("select id, name from user");
+			
+			while (res.next()) {
+				var id = res.getInt("id");
+				var name = res.getString("name");
+				
+				users.add(new User(id, name));
+			}		
+			stmt.close();
+			
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return users;
+	}
+
+}
