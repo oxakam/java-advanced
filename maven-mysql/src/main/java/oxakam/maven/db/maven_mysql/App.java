@@ -30,7 +30,9 @@ public class App
 		if (userOpt.isPresent())
 			System.out.println("Retrieved: " + userOpt.get());
 		else
-			System.out.println("No user found");	
+			System.out.println("No user found");
+		
+		userDao.delete(new User(3, null));
 			
         try {
 			db.disconnect();

@@ -32,8 +32,18 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(User t) {
+	public void delete(User u) {
 		
+		var conn = Database.dbInstance().getConnection();		
+		try {
+			var stmt = conn.prepareStatement("delete from user where id=?");
+			stmt.setInt(1, u.getId());
+			stmt.executeUpdate();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}				
 	}
 
 	@Override
