@@ -1,29 +1,12 @@
 package oxakam.maven.db.maven_mysql;
 
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class App 
 {
     public static void main( String[] args )
     {
-    	Properties props = new Properties();
-    	
-    	String env = System.getProperty("env");
-    	
-    	if(env == null) {
-    		env = "dev";
-    	}  			
-    	String propFile = String.format("/config/db.%s.properties", env);	//env files with DB props created under src/main/resources
-    	System.out.println(propFile);
-    	
-    	try {
-			props.load(App.class.getResourceAsStream(propFile));	
-			
-		} catch (Exception e1) {
-			System.out.println("Cannot load properties file: "+ propFile);
-			return;
-		} 
+    	var props = Profile.getProperties("db");
     	
         var db = Database.dbInstance();
          
