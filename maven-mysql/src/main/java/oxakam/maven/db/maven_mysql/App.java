@@ -1,6 +1,5 @@
 package oxakam.maven.db.maven_mysql;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -9,7 +8,14 @@ public class App
     public static void main( String[] args )
     {
     	Properties props = new Properties();
-    	String propFile = "/config/db.properties";		//file with DB props created under src/main/resources
+    	
+    	String env = System.getProperty("env");
+    	
+    	if(env == null) {
+    		env = "dev";
+    	}  			
+    	String propFile = String.format("/config/db.%s.properties", env);	//env files with DB props created under src/main/resources
+    	System.out.println(propFile);
     	
     	try {
 			props.load(App.class.getResourceAsStream(propFile));	
