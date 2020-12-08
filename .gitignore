@@ -3,6 +3,8 @@
 *.project
 *.settings
 
+# Text files
+*.txt
 
 # Compiled class file
 *.class
