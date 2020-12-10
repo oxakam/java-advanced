@@ -14,7 +14,7 @@ public class Profile {
     		env = "dev";
     	}  			
     	String propFile = String.format("/config/%s.%s.properties", name, env);	
-    	System.out.println(propFile);
+//    	System.out.println(propFile);
     	
     	try {
 			props.load(App.class.getResourceAsStream(propFile));	
