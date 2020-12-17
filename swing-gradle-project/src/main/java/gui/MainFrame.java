@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.MenuBar;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -34,8 +32,5 @@ public class MainFrame extends JFrame {
 		menuBar.add(fileMenu);
 		
 		return menuBar;
-	}
-	
-	
-	
+	}	
 }

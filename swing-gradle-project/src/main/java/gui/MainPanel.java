@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,10 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MainPanel extends JPanel {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
+	private UserFormListener formListener;
 	
 	public MainPanel() {		
-//		setBackground(Color.lightGray);
 
 		var formLabel = new JLabel("Add user");
 		formLabel.setFont(new Font("Verdana", Font.BOLD, 24));
@@ -36,7 +35,11 @@ public class MainPanel extends JPanel {
 		gc.anchor = GridBagConstraints.NORTH;
 		
 		add(createFormPanel(), gc);  //add nested panel to main panel	
-	}	
+	}
+	
+	public void setFormListener(UserFormListener formListener) {
+		this.formListener = formListener;	
+	}
 	
 	/* Create nested panel with controls */
 	private JPanel createFormPanel() {		
@@ -56,6 +59,15 @@ public class MainPanel extends JPanel {
 		var nameField = new JTextField(15);
 		var passField = new JTextField(15);		
 		var addButton = new JButton("Save");
+		
+		addButton.addActionListener(e -> {	//event parm passed
+			String username = nameField.getText();
+			String password = passField.getText();
+			
+			if(formListener != null) {
+				formListener.formSubmitted(username, password);
+			}
+		});	
 	
 		var gc = new GridBagConstraints();
 				
