@@ -30,36 +30,15 @@ label {
 </head>
 
 <body>
-	<c:out value="Hello World JSTL" />
-	<p>
-		<c:out value="${ pageContext.servletContext.contextPath }" />
-	</p>
-	<p>
-		<c:url value="/test" />
-		</p>
-	<br><br>
+	<form action="${pageContext.servletContext.contextPath}/users" method="post">
 	
-	<form>
 		<label for="name">Name:</label>
-		<input type="text" id="nameId" name="name" />
+		<input type="text" id="nameId" name="nameName" />
 			
 		<label for="password">Password:</label>
-		<input type="password" id="passId" name="password" />
+		<input type="password" id="passId" name="passName" />
 		
 		<input type="submit" id="submit" value="Submit" />		
 	</form>
-	
-	
-	<!-- using JSTL context -->	
-	<br><br>
-	<p>
-		<strong> <%="Now Date - "%> <%=new java.util.Date()%></strong>
-	</p>
-	<p>
-		<%="getContextPath - " + pageContext.getServletContext().getContextPath()%>
-	</p>
-	
-	${ pageContext.servletContext.contextPath }
-
 </body>
 </html>
