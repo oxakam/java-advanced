@@ -31,8 +31,12 @@ label {
 
 <body>
 	<c:out value="Hello World JSTL" />
-	<p><c:out value="${ pageContext.servletContext.contextPath }" /></p>
-	<p><c:url value="/test" /></p>
+	<p>
+		<c:out value="${ pageContext.servletContext.contextPath }" />
+	</p>
+	<p>
+		<c:url value="/test" />
+		</p>
 	<br><br>
 	
 	<form>
