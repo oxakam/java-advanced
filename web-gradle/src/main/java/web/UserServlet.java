@@ -1,11 +1,15 @@
 package web;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class UserServlet
@@ -19,15 +23,20 @@ public class UserServlet extends HttpServlet {
      */
     public UserServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.getWriter().println("doGet testing");
+
+		List<User> users = List.of(new User("Sommer","warm"), new User("Winter","cold"));		
+		
+		Gson gson = new Gson();							
+		String json = gson.toJson(users);				//json format
+		
+		response.setContentType("application/json");	//display on http://localhost:8080/WebGradle/users
+		response.getWriter().println(json);
 	}
 
 	/**
