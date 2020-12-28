@@ -13,9 +13,6 @@ public class Runner implements CommandLineRunner {
 	
 	@Autowired
 	private UserDao userDao;
-	
-//	@Autowired
-//	private Greeter greeter;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -34,7 +31,10 @@ public class Runner implements CommandLineRunner {
 			System.out.println("Find by ID: " + retrievedUserOpt.get());
 		}
 		
-//		greeter.greet();		
+		/* Adding CRUD repository method */
+		var users = userDao.findByName("Morpheus");
+		
+		users.forEach(u -> System.out.println("Find by name: " + u));		
 	}
 
 }
