@@ -1,4 +1,4 @@
-package gui;
+package app.gui;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
