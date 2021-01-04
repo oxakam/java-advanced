@@ -1,16 +1,28 @@
 package app.controllers;
 
+import java.io.IOException;
+
 import app.gui.CreateBookPanel;
 import app.gui.MainFrame;
 import app.gui.ViewBooksPanel;
+import services.BookService;
 
 public class Controller {
 	
 	private MainFrame mainFrame;
 	private CreateBookPanel createPanel;
 	private ViewBooksPanel viewPanel;
+	private BookService bookService;
 	
 	public Controller() {
+		
+		bookService = new BookService();
+		
+		try {
+			bookService.getAll();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		createPanel = new CreateBookPanel();
 		
