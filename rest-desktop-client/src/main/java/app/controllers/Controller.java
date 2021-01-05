@@ -5,7 +5,7 @@ import java.io.IOException;
 import app.gui.CreateBookPanel;
 import app.gui.MainFrame;
 import app.gui.ViewBooksPanel;
-import services.BookService;
+import app.services.BookService;
 
 public class Controller {
 	
@@ -19,9 +19,12 @@ public class Controller {
 		bookService = new BookService();
 		
 		try {
-			bookService.getAll();
+			var bookList = bookService.getAll();
+			viewPanel = new ViewBooksPanel(bookList);
+			
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Server connection error - ViewBooksPanel is not shown"); 
 		}
 		
 		createPanel = new CreateBookPanel();
@@ -29,8 +32,7 @@ public class Controller {
 		createPanel.setFormListener((author, title) -> {
 			System.out.println(author + ": " + title);
 		});
-		
-		viewPanel = new ViewBooksPanel();
+
 		
 		mainFrame = new MainFrame(createPanel, viewPanel);
 	}
