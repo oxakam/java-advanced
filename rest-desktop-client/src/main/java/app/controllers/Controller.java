@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import app.gui.CreateBookPanel;
 import app.gui.MainFrame;
 import app.gui.ViewBooksPanel;
@@ -44,7 +46,10 @@ public class Controller {
 				refresh();
 				
 			} catch (IOException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
+				JOptionPane.showMessageDialog(mainFrame, 
+						"Error saving book", "Book service not available",
+						JOptionPane.ERROR_MESSAGE);
 			}
 			System.out.println(author + ": " + title);
 		});
@@ -68,7 +73,10 @@ public class Controller {
 			viewPanel.refresh();
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(mainFrame, 
+					"Error refreshing book list", 
+					"Book service not available",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
