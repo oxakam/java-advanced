@@ -26,3 +26,34 @@ Implementing and Using Annotations:
  - Annotation attributes, getting attribute values
  - class Annotations
  - creating SQL expressions
+
+Desktop programming with Swing:
+ - creating panel with user into database
+
+Java Web Projects, Servlets and JSPs
+ - Tomcat, WTP (Web Tool Platform) plugin
+ - JSP (Java Server Pages)
+ - JSTL (JavaServer Pages Tag Library), servlets
+
+Spring, Spring Boot and Spring Data JPA
+ - creating beans & components
+ - configuration, JPA
+ - creating a database and user
+ - spring database configuration
+ - repository methods
+
+Creating a Spring Web Service (Maven)
+ - basic spring web app
+ - hello world spring MVC
+ - rest controllers
+ - posting JSON to spring
+ - path variables & creating database
+ - layered architecture
+
+REST Desktop Client
+ - JSON client
+ - split panes
+ - creating the user form
+ - connecting to service
+ - parsing the JSON
+ - creating books via service
