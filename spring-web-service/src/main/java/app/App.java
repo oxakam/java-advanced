@@ -11,5 +11,6 @@ public class App {
 		SpringApplication.run(App.class, args);
 		
 		System.out.println("App testing.......");
+		System.out.println("Repository testing");
 	}
 }
